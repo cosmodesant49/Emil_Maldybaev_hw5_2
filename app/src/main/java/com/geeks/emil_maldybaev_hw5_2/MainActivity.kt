@@ -1,5 +1,6 @@
 package com.geeks.emil_maldybaev_hw5_2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.geeks.emil_maldybaev_hw5_2.databinding.ActivityMainBinding
@@ -13,12 +14,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initClickers()
+        sendData()
+        //initClickers()
     }
 
-    private fun initClickers() {
+/*    private fun initClickers() {
         with(binding){
             btnGet.setOnClickListener{
+
                 RetrofitService().api.getLovePercentage(etFirstName.text.toString(),etSecondName.text.toString())
                     .enqueue(object :Callback<LoveModel>{
                         override fun onResponse(
@@ -35,5 +38,15 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-    }
+        //binding.btnGet.setOnClickListener { sendData()}
+        }*/
+
+    private fun sendData() {
+        binding.btnGet.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("name", binding.etFirstName.text.toString())
+            intent.putExtra("surname", binding.etSecondName.text.toString())
+            startActivity(intent)
+        }
+        }
 }
