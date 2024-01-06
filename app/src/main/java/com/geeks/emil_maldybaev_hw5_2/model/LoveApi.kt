@@ -1,4 +1,4 @@
-package com.geeks.emil_maldybaev_hw5_2
+package com.geeks.emil_maldybaev_hw5_2.model
 
 import retrofit2.Call
 import retrofit2.http.GET

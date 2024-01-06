@@ -1,4 +1,4 @@
-package com.geeks.emil_maldybaev_hw5_2
+package com.geeks.emil_maldybaev_hw5_2.model
 
 import com.google.gson.annotations.SerializedName
 
