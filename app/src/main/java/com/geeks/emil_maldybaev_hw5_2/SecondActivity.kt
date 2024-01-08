@@ -31,23 +31,25 @@ class SecondActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val name = intent.getStringExtra("name")
-        val surname = intent.getStringExtra("surname")
+        val name = intent.getStringExtra("name").toString()
+        val surname = intent.getStringExtra("surname").toString()
 
-
+/*
         binding.etFirstName.text = name
-        binding.etSecondName.text = surname
+        binding.etSecondName.text = surname*/
 
-        initClickers()
+
+            initClickers(name,surname)
+
 
     }
 
-    private fun initClickers() {
+    private fun initClickers(name:String,sname:String) {
         with(binding) {
             btnShow.setOnClickListener {
                 //sharedPreferences.edit().putBoolean("as",true).apply()
                 utils.showToast(this@SecondActivity, hero.name + "${hero.damage}")
-                viewModel.getLoveLiveData(etFirstName.text.toString(), etSecondName.text.toString())
+                viewModel.getLoveLiveData(name,sname)
                     .observe(this@SecondActivity,
                         Observer {
                             tvSecondResult.text = it.toString()
