@@ -5,25 +5,41 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.geeks.emil_maldybaev_hw5_2.data.local.Pref
 import com.geeks.emil_maldybaev_hw5_2.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    private var navController: NavController?=null
+    @Inject
+    lateinit var pref: Pref
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        sendData()
-        //initClickers()
-    }
 
-    /*    private fun initClickers() {
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+         navController = navHostFragment.navController
+
+        if (!pref.isShow()) {
+            Log.e("ololo","navigated to onBoarding")
+            navController?.navigate(R.id.onBoardingFragment3)
+        }
+
+        /*    private fun initClickers() {
             with(binding){
                 btnGet.setOnClickListener{
 
@@ -46,13 +62,5 @@ class MainActivity : AppCompatActivity() {
             //binding.btnGet.setOnClickListener { sendData()}
             }*/
 
-    private fun sendData() {
-            binding.btnGet.setOnClickListener {
-                val intent = Intent(this, SecondActivity::class.java)
-                intent.putExtra("name", binding.etFirstName.text.toString())
-                intent.putExtra("surname", binding.etSecondName.text.toString())
-                startActivity(intent)
-
-        }
     }
 }
