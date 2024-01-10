@@ -1,15 +1,14 @@
 package com.geeks.emil_maldybaev_hw5_2
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.geeks.emil_maldybaev_hw5_2.databinding.ActivitySecondBinding
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,6 +24,7 @@ class SecondActivity : AppCompatActivity() {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
@@ -46,12 +46,15 @@ class SecondActivity : AppCompatActivity() {
 
     private fun initClickers(name:String,sname:String) {
         with(binding) {
+            btnHistory.setOnClickListener{
+                startActivity(Intent(this@SecondActivity,ThirdActivity::class.java))
+            }
             btnShow.setOnClickListener {
-                //sharedPreferences.edit().putBoolean("as",true).apply()
                 utils.showToast(this@SecondActivity, hero.name + "${hero.damage}")
                 viewModel.getLoveLiveData(name,sname)
                     .observe(this@SecondActivity,
                         Observer {
+                            App.appDatabase.getDao().insert(it)
                             tvSecondResult.text = it.toString()
                         })
 

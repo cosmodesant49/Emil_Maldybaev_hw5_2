@@ -1,27 +1,20 @@
 package com.geeks.emil_maldybaev_hw5_2
 
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.geeks.emil_maldybaev_hw5_2.data.local.Pref
 import com.geeks.emil_maldybaev_hw5_2.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    private var navController: NavController?=null
+    private var navController: NavController? = null
+
     @Inject
     lateinit var pref: Pref
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-         navController = navHostFragment.navController
+        navController = navHostFragment.navController
 
         if (!pref.isShow()) {
-            Log.e("ololo","navigated to onBoarding")
+            Log.e("ololo", "navigated to onBoarding")
             navController?.navigate(R.id.onBoardingFragment3)
         }
 

@@ -26,6 +26,10 @@ class OnBoardingAdapter(private val onClick: () -> Unit) :
             R.raw.qrcode,
             "trtrtrtr",
             "trtrtrtrtrtrtrtrtrtrtrtrtttrtr"
+        ), OnBoarding(
+            R.raw.qrcode,
+            "trtrtrtr",
+            "trtrtrtrtrtrtrtrtrtrtrtrtttrtr"
         )
     )
 

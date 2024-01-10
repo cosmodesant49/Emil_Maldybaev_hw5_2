@@ -39,7 +39,7 @@ class AppModule {
     }
 
     @Provides
-    fun providePref(sharedPreferences: SharedPreferences):Pref{
+    fun providePref(sharedPreferences: SharedPreferences): Pref {
         return Pref(sharedPreferences)
     }
 }
